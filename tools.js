@@ -1,7 +1,33 @@
-function tamamusu()
+function getTamamusuMap()
 {
 	const map = new Map();
-  
+/*
+	map.set(0, {
+		id: 0,
+		name: "赤松健ファンアート展",
+		area: "参議院選挙2022全国比例",
+		fullName_kanji: "赤松健ファンアート展",
+		fullName_yomi: "あかまつけんファンアートてん",
+		fullName_roman: "AlkamatduKen Fanart",
+		motif: ["全都道府県から投票できます"],
+		description: "",
+		imageId: "1WHCbRkzBGOFeoEVFRB-oJAqN-bBlFSMK",
+		silhouetteId: "1WHCbRkzBGOFeoEVFRB-oJAqN-bBlFSMK",
+		borderedId: "1WHCbRkzBGOFeoEVFRB-oJAqN-bBlFSMK",
+		level: 1
+	});
+*/
+	map.set(-100, {
+		id: -100,
+		name: "全員集合",
+		area: "全国",
+		fullName_kanji: "全員集合",
+		fullName_yomi: "ぜんいんしゅうごう",
+		fullName_roman: "zeninsyugo",
+		motif: [],
+		description: "",
+		level: 1
+	});
 	map.set(0, {
 		id: 0,
 		name: "タマゴ",
@@ -674,32 +700,23 @@ function tamamusu()
 
 	Array.from(map.values()).forEach(o =>
 	{
-		o.image = new Image();
-
-		if(o.id == 0)
-		{
-			o.imagePath = "./image/たまむす/カルタ画像/ファンアート展ワンポイント.jpg";
-			o.silhouettePath = o.imagePath;
-			o.borderedPath = o.imagePath;
-		
-			o.image.src = o.imagePath;
-			o.silhouette.src = o.silhouettePath;
-			o.bordered.src = o.borderedPath;
+		if(o.id == 0) {
+			o.imagePath = "./image/タマゴ.png";
 		}
-		else
-		{
-			const a = ("0" + o.id).slice(-2) + "-1";
-			const b = "_" + o.area + "_" + o.fullName_kanji + ".png";
-
-			o.imagePath = "./image/たまむす/正規化/" + a + b;
-			o.silhouettePath = "./image/たまむす/正規化シルエット/" + a + "s" + b;
-			o.borderedPath = "./image/たまむす/正規化縁取り/" + a + "o" + b;
-		
-			o.image.src = o.imagePath;
-			o.silhouette.src = o.silhouettePath;
-			o.bordered.src = o.borderedPath;
+		else if(o.id == -100) {
+			o.imagePath = "./image/背面.png";
+		}
+		else {
+			o.imagePath = {
+				A: "./image/都道府県/" + o.area + "/A.png",
+				B: "./image/都道府県/" + o.area + "/B.png",
+				C: "./image/都道府県/" + o.area + "/C.png",
+				D: "./image/都道府県/" + o.area + "/D.png",
+				E: "./image/都道府県/" + o.area + "/E.png",
+				F: "./image/都道府県/" + o.area + "/F.png"
+			};
 		}
 	});
-	
+
 	return map;
 }
