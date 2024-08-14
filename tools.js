@@ -701,19 +701,19 @@ function getTamamusuMap()
 	Array.from(map.values()).forEach(o =>
 	{
 		if(o.id == 0) {
-			o.imagePath = "./image/タマゴ.png";
+			o.imagePath = "./images/タマゴ.png";
 		}
 		else if(o.id == -100) {
-			o.imagePath = "./image/背面.png";
+			o.imagePath = "./images/背面.png";
 		}
 		else {
 			o.imagePath = {
-				A: "./image/都道府県/" + o.area + "/A.png",
-				B: "./image/都道府県/" + o.area + "/B.png",
-				C: "./image/都道府県/" + o.area + "/C.png",
-				D: "./image/都道府県/" + o.area + "/D.png",
-				E: "./image/都道府県/" + o.area + "/E.png",
-				F: "./image/都道府県/" + o.area + "/F.png"
+				A: "./images/都道府県/" + o.area + "/A.png",
+				B: "./images/都道府県/" + o.area + "/B.png",
+				C: "./images/都道府県/" + o.area + "/C.png",
+				D: "./images/都道府県/" + o.area + "/D.png",
+				E: "./images/都道府県/" + o.area + "/E.png",
+				F: "./images/都道府県/" + o.area + "/F.png"
 			};
 		}
 	});
