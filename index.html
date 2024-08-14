@@ -111,7 +111,7 @@
 				
 					navigator.share({
 						text: "SCORE:" + params.score + "\r\n#たまむす #たまむすカルタ",
-						url: "https://negimataisen.com/Akamatsu-so/tamamusuCarta",
+						url: window.location.href,
 						files: [imageFile],
 					}).then(() => {
 //						console.log("共有成功.");
