@@ -720,3 +720,31 @@ function getTamamusuMap()
 
 	return map;
 }
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+function getById(tag) {
+	return document.getElementById(tag);
+}
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+function screenLock()
+{
+	// ロック用のdivを生成
+	const element = document.createElement('div');
+	element.id = "screenLock";
+	// ロック用のスタイル
+	element.style.top = '0px';
+	element.style.left = '0px';
+	element.style.height = '100%';
+	element.style.width = '100%';
+	element.style.position = 'fixed';
+	element.style.zIndex = '9999';
+	element.style.opacity = '0';
+//
+	document.body.appendChild(element);
+}
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+function screenUnlock()
+{
+	const dom_obj = document.getElementById("screenLock");
+	const dom_obj_parent = dom_obj.parentNode;
+	dom_obj_parent.removeChild(dom_obj);
+}
