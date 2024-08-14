@@ -2,24 +2,500 @@
 <html>
 	<head>
 		<meta name="author" content="@MagicalWatosan">
-		<title> たまむすカルタ </title>
-		<script type="text/javascript" src="tools.js"></script>
+		<title> <%= title %> </title>
+		<link rel="stylesheet" href="/Akamatsu-so/stylesheets/tamamusuCarta.css"/>
+		<script type="text/javascript" src="/Akamatsu-so/javaScripts/tools.js"></script>
+		<script type="text/javascript" src="/javaScripts/tools.js"></script>
 	</head>
 	<body>
+<!-- --------------------------------------------------------------------------------------------------------------- -->
+		<table id="field">
+		
+		</table>
 
+		<div id="scoreText"> score:1000</div>
 
+		<table>
+			<tr>
+				<td>
+					<input type="button" value="初級" style="height:40px; width:60px;" onclick="intialize(3, 3, 0, 5);">
+				<td>
+					<input type="button" value="中級" style="height:40px; width:60px;" onclick="intialize(4, 4, 2, 7);">
+				<td>
+					<input type="button" value="上級" style="height:40px; width:60px;" onclick="intialize(6, 6, 4, 10);">
+				<td>
+					<input type="button" value="超上級" style="height:40px; width:80px;" onclick="intialize(8, 8, 6, 12);">
+				<td>
+					<input type="button" value="絶級" style="height:40px; width:80px;" onclick="intialize(10, 10, 6, 15);">
+		</table>
 
+		<table>
+			<tr>
+				<td>
+					<img id=hintEgg height=30> × <span id="point"> 5 </span>
+				<td>
+					<input type="button" id="hintButton" value="ヒント" style="height:40px; width:60px;" onclick="hint();" disabled>
+				<td>
+					<span id="hintText"> </span>
+		</table>
+
+		<div> <span class='toggle_button'> <input type='checkbox' id="easymode" class='toggle_input' checked onclick="setEasy();"/><label for="easymode" class='toggle_label'> </label> </span> イージーモード</div>
+
+		<dialog id="resultDialog">
+			<canvas id="output" width=600 height=700> </canvas>
+			
+			<input type="button" id="tweetButton" value="共有" onclick="tweet();">
+			<input type="button" id="level1" value="初級" onclick="intialize(3, 3, 1, 5);">
+			<input type="button" id="level2" value="中級" onclick="intialize(4, 4, 2, 7);">
+			<input type="button" id="level3" value="上級" onclick="intialize(6, 6, 4, 10);">
+			<input type="button" id="level4" value="超上級" onclick="intialize(8, 8, 6, 12);">
+			<input type="button" id="level5" value="絶級" onclick="intialize(10, 10, 6, 20);">
+		</dialog>
+		
+		<progress id="progressBar" value="10" max="100" style="display:none"> 0% </progress>
+<!--
+		<textarea id="errorMessage"> </textarea>
 <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 		<script type="text/javascript">
-      const tamamusu = getTamamusuMap();
+			const host = window.location.host;
+
+			const tamamusu = getTamamusuMap();
 			const tamago = tamamusu.get(0);
 			tamamusu.delete(0);
 			const backImage = tamamusu.get(-100);
 			tamamusu.delete(-100);
+			
+			getById("hintEgg").src = tamago.imagePath;
+			
+			const cartaImage = new Image();
+			
+			const params = {
+				rowCount: 0,
+				columnCount: 0,
+				obj: null,
+				id: null,
+				score: 0
+			};
+			
+			const hintMap = new Map();
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+			function setEasy()
+			{
+				localStorage.setItem("easymode", getById("easymode").checked);
+			}
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+			function hint()
+			{
+				const ptObj = getById("point");
+				const point = Number(ptObj.innerText)
+				
+				if(params.obj.hintText && point > 0)
+				{
+					hintMap.set(params.obj, params.obj.hintText);
+					
+					getById("hintText").innerText = params.obj.hintText;
+					ptObj.innerText = point - 1;
+				}
 
+				getById("hintButton").disabled = true;
+			}
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+			function tweet()
+			{
+				try
+				{
+					const dataURL = getById("output").toDataURL("image/png");
+					const blob = dataToBlob(dataURL);
+					const imageFile = new File([blob], "image.png", {
+						type: "image/png",
+					});
+				
+					navigator.share({
+						text: "SCORE:" + params.score + "\r\n#たまむす #たまむすカルタ",
+						url: "https://negimataisen.com/Akamatsu-so/tamamusuCarta",
+						files: [imageFile],
+					}).then(() => {
+//						console.log("共有成功.");
+					}).catch((error) => {
+						console.log(error);
+					});
+				}
+				catch(e)
+				{
+					console.log(e);
+					
+					getById("tweetButton").value = "使用不可";
+					getById("tweetButton").disabled = true;
+				}
+			}
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+			function finish()
+			{
+				const cvs = getById("output");
+				const ctx = cvs.getContext("2d");
+								
+				params.score += Number(getById("point").innerText) * 10;
 
-      console.log(tamamusu);
-      
+				ctx.fillStyle = "#CCCCCC";
+				ctx.fillRect(0, 600, 600, 100);
+				
+				ctx.font = '60px serif';
+				ctx.fillStyle = "#111111";
+				ctx.fillText("SCORE:" + params.score, 150, 680);
+
+				resultDialog.showModal();
+			}
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+			function setResult(obj)
+			{
+				const cvs = getById("output");
+				const ctx = cvs.getContext("2d");
+				
+				const size = 600 / Math.max(params.rowCount, params.columnCount) - 5;
+				
+				if(obj.__count == 1)
+				{
+					obj.style.border = "medium solid #FFFF00";
+					ctx.fillStyle = "#FFFF00";
+					
+					params.score += obj.__id != -1 ? 150 : 0;
+				}
+				else if(obj.__count == 2)
+				{
+					obj.style.border = "medium solid #00FF00";
+					ctx.fillStyle = "#00FF00";
+
+					params.score += obj.__id != -1 ? 100 : 0;
+				}
+				else if(obj.__count <= 5)
+				{
+					obj.style.border = "medium solid #00FFFF";
+					ctx.fillStyle = "#00FFFF";
+
+					params.score += obj.__id != -1 ? 50 : 0;
+				}
+				else
+				{
+					obj.style.border = "medium solid #DDDDDD";
+					ctx.fillStyle = "#DDDDDD";
+
+					params.score += 0;
+				}
+
+				ctx.fillRect(obj.__x * 600 - size / 2 - 3, obj.__y * 600 - size / 2 - 3, size + 6, size + 6);
+				
+				const img = new Image();
+					
+				img.onload = () => {
+					ctx.drawImage(img, obj.__x * 600 - size / 2, obj.__y * 600 - size / 2, size, size);
+				}
+					
+				img.src = obj.__imagePath;
+			}
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+			function turn(obj)
+			{
+				params.score = Math.max(0,  params.score - 10);
+
+				obj.style.border = "medium solid #FF0099";
+
+				const hintButton = getById("hintButton");
+				const hintText = getById("hintText");
+				
+				obj.__count = obj.__count ? obj.__count + 1 : 1;
+				obj.disabled = true;
+
+				if(params.obj)
+				{
+					hintButton.disabled = true;
+					hintText.innerText = "";
+					
+					if(obj.__id == params.id)
+					{
+						screenLock();
+
+						setTimeout(() =>
+						{
+							setResult(obj);
+							setResult(params.obj);
+							
+							params.obj = null;
+							
+							if(obj.__id != -1) {
+								params.remain -= 2;
+							}
+							else
+							{
+								const ptObj = getById("point");
+								const point = Number(ptObj.innerText)
+								
+								ptObj.innerText = point + 2;
+							}
+							
+							if(params.remain == 0) {
+								finish();
+							}
+
+							screenUnlock();
+						}, 500);
+					}
+					else
+					{
+						screenLock();
+
+						obj.disabled = false;
+						params.obj.disabled = false;
+
+						setTimeout(() =>
+						{
+							obj.reset()
+							params.obj.reset();
+
+							obj.style.border = null;
+							params.obj.style.border = null;
+							
+							obj.disabled = false;
+							params.obj.disabled = false;
+
+							params.obj = null;
+
+							screenUnlock();
+						}, 1500);
+					}
+				}
+				else
+				{
+					params.obj = obj;
+					params.id = obj.__id;
+					
+					if(hintMap.has(obj))
+					{
+						hintText.innerText = hintMap.get(obj);
+
+						hintButton.disabled = true;
+					}
+					else
+					{
+						const ptObj = getById("point");
+						const point = Number(ptObj.innerText)
+
+						hintButton.disabled = point <= 0;
+					}
+				}
+				
+				getById("scoreText").innerText = "SCORE:" + params.score;
+			}
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+			function intialize(w, h, n, p)
+			{
+				hintMap.clear();
+	
+				const cvs = getById("output");
+				const ctx = cvs.getContext("2d");
+				
+				ctx.clearRect(0, 0, 600, 700);
+
+				const table = getById("field");
+
+				while(table.rows.length > 0)
+					table.deleteRow(-1);
+				
+				params.rowCount = h;
+				params.columnCount = w;
+				params.remain = 0;
+				params.score = 1000;
+
+				const tempList = [];
+				const cartaList = [];
+
+				const ar = Array.from(tamamusu.values()).filter(u => u.id > 0);
+				
+				const unitList = [];
+				const num = w * h % 2 == 0 ? w * h : w * h - 1;
+				params.remain = num;
+
+				while(ar.length > 0 && unitList.length < num)
+				{
+					const chara = ar.splice(Math.floor(Math.random() * ar.length), 1)[0];
+					
+					const pat = ["A", "B", "D", "E", "F"];
+					const pat1 = pat.splice(Math.random() * pat.length, 1)[0];
+					const pat2 = pat[Math.floor(Math.random() * pat.length)];
+					
+					unitList.push({
+						id: chara.id,
+						hintText: chara.motif.join(", "),
+						imagePath: chara.imagePath[pat1]
+					});
+					
+					unitList.push({
+						id: chara.id,
+						hintText: chara.motif.join(", "),
+						imagePath: chara.imagePath[pat2]
+					});
+				}
+				
+				while(unitList.length < num)
+				{
+					unitList.push({
+						id: -1,
+						imagePath: tamago.imagePath
+					});
+					
+					params.remain--;
+				}
+
+				for(let i=0 ; i<h ; i++)
+				{
+					const row = table.insertRow(-1);
+
+					for(let j=0 ; j<w ; j++)
+					{
+						const cell = row.insertCell();
+						
+						if(h % 2 == 1 && w % 2 == 1 && i == Math.floor(h / 2) && j == Math.floor(w / 2))
+						{
+							cell.innerHTML = "<input type='button' class='carta' disabled>";
+							const obj = cell.children[0];
+				
+							obj.__id = -1;
+							obj.__count = 100;
+							obj.__x = (j + 0.5) / w;
+							obj.__y = (i + 0.5) / h;
+							
+							obj.__imagePath = tamago.imagePath;
+							obj.__image= new Image();
+							obj.__image.src = obj.__imagePath;
+							obj.style.backgroundImage = "url('" + obj.__imagePath + "')";
+							
+							setResult(obj);
+						}
+						else
+						{
+							cell.innerHTML = "<div class='card flipped'>" +
+							"<div class='inner'>" +
+								"<img class='front'>" +
+								"<img class='back'>" +
+							"</div>" +
+							"</div>";
+							const obj = cell.children[0];
+							const front = obj.children[0].children[0];
+							const back = obj.children[0].children[1];
+
+							const unit = unitList.splice(Math.floor(Math.random() * unitList.length), 1)[0];
+
+							obj.__id = unit.id;
+							obj.__imagePath = unit.imagePath;
+							obj.__x = (j + 0.5) / w;
+							obj.__y = (i + 0.5) / h;
+
+							obj.hintText = unit.hintText;
+							
+							front.src = unit.imagePath;
+							back.src = backImage.imagePath;
+							
+							obj.onclick = () =>
+							{
+								if( !obj.disabled)
+								{
+									obj.style.opacity = 1.0;
+
+									obj.classList.remove('flipped');
+
+									turn(obj);
+								}
+							};
+
+							obj.reset = () =>
+{
+								if(getById("easymode").checked)
+								{
+									obj.style.opacity = 0.3;
+									
+									obj.easyFlag = true;
+								}
+								else
+								{
+									if( !obj.disabled) {
+										obj.classList.add('flipped');
+									}
+								}
+							};
+						}
+					}
+					
+//					if(i == 0)
+//					{
+//						const cell = row.insertCell();
+//						cell.classList.add("description");
+//						cell.rowSpan = 0;
+//					}
+				}
+
+				getById("scoreText").innerText = "SCORE:" + params.score;
+				getById("point").innerText = p;
+				
+				resultDialog.close();
+			}
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+			async function startup()
+			{
+				screenLock();
+
+				progressBar.style.display = "";
+//--------------------------------------------------------------------------------------------------------------------//
+				cartaImage.src = backImage.imagePath;
+
+/*
+				for(let unit of tamamusu.values())
+				{
+					const ar = [2,3,5,6,16,17,18,19,25,29,30,31,32,37,39,41,42,44,45,47];
+
+					if(ar.indexOf(Number(unit.id)) != -1)
+					{
+						unit.image = unit.silhouette;
+						unit.bordered = unit.silhouette;
+					}
+				}
+*/
+				const egg = new Image();
+
+				egg.onload = () => {
+					intialize(3, 3, 0, 5);
+//					intialize(10, 10, 98);
+				};
+
+				egg.src = tamago.imagePath;
+//				egg.src = "https://drive.google.com/uc?id=1elGMIGgLPoSWKVn0xLnISC5DSkGxTR0G";
+
+				tamamusu.set(-1, {
+					id: -1,
+					image: egg,
+					bordered: egg,
+					silhouette: egg
+				});
+				
+				
+//--------------------------------------------------------------------------------------------------------------------//
+				progressBar.style.display = "none";
+
+				console.log("startup");
+
+				screenUnlock();
+			}
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+			class Carta
+			{
+				x;
+				y;
+				constructor(x, y)
+				{
+					this.x = x;
+					this.y = y;
+				}
+			}
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+			startup();
 		</script>
 	</body>
 </html>
