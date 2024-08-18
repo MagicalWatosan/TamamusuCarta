@@ -81,8 +81,6 @@
 			
 			getById("hintEgg").src = tamago.imagePath;
 			
-			const cartaImage = new Image();
-			
 			const params = {
 				rowCount: 0,
 				columnCount: 0,
@@ -458,41 +456,7 @@
 
 				progressBar.style.display = "";
 //--------------------------------------------------------------------------------------------------------------------//
-				cartaImage.src = backImage.imagePath;
-
-/*
-				for(let unit of tamamusu.values())
-				{
-					const ar = [2,3,5,6,16,17,18,19,25,29,30,31,32,37,39,41,42,44,45,47];
-
-					if(ar.indexOf(Number(unit.id)) != -1)
-					{
-						unit.image = unit.silhouette;
-						unit.bordered = unit.silhouette;
-					}
-				}
-*/
-				const egg = new Image();
-
-				egg.onload = () => {
-					intialize(3, 3, 0, 5);
-//					intialize(10, 10, 98);
-				};
-
-				egg.src = tamago.imagePath;
-
-
-				console.log(tamago.imagePath)
-//				egg.src = "https://drive.google.com/uc?id=1elGMIGgLPoSWKVn0xLnISC5DSkGxTR0G";
-
-				tamamusu.set(-1, {
-					id: -1,
-					image: egg,
-					bordered: egg,
-					silhouette: egg
-				});
-				
-				
+				intialize(3, 3, 0, 5);
 //--------------------------------------------------------------------------------------------------------------------//
 				progressBar.style.display = "none";
 
