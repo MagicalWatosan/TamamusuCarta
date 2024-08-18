@@ -40,6 +40,8 @@
 
 		<div> <span class='toggle_button'> <input type='checkbox' id="easymode" class='toggle_input' checked onclick="setEasy();"/><label for="easymode" class='toggle_label'> </label> </span> イージーモード</div>
 
+		<input type="button" id="creditButton" value="About" style="height:40px; width:60px;" onclick="creditDialog.showModal();">
+
 		<dialog id="resultDialog">
 			<canvas id="output" width=600 height=700> </canvas>
 			
@@ -49,6 +51,19 @@
 			<input type="button" id="level3" value="上級" onclick="intialize(6, 6, 4, 10);">
 			<input type="button" id="level4" value="超上級" onclick="intialize(8, 8, 6, 12);">
 			<input type="button" id="level5" value="絶級" onclick="intialize(10, 10, 6, 20);">
+		</dialog>
+
+		<dialog id="creditDialog">
+			<input type="button" id="creditDialogClose" value="×" style="height:40px; width:60px;" onclick="creditDialog.close();">
+			<div>
+				制作：<a href="https://x.com/MagicalWatosan" target="_blank"> 魔法探偵の助手 </a>
+			</div>
+			<div>
+				白地図素材：<a href="https://frame-illust.com/" target="_blank"> Frameillust 様 </a>
+			</div>
+			<div>
+				都道府県地図素材：<a href="https://illustimage.com/" target="_blank"> DESIGNALIKIE 様 </a>
+			</div>
 		</dialog>
 		
 		<progress id="progressBar" value="10" max="100" style="display:none"> 0% </progress>
