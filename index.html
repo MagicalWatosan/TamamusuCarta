@@ -538,8 +538,8 @@
 				progressBar.style.display = "";
 //--------------------------------------------------------------------------------------------------------------------//
 				const folderMap = {
-					tamamusu: "たまむす/たまむすカルタ/",
-					jiminsousai: "自民党総裁カルタ/"
+					tamamusu: "imagesたまむす！/",
+					jiminsousai: "images/自民党総裁2024/"
 				};
 
 				const queryParams = getQueryParams();
@@ -548,7 +548,7 @@
 				
 				if(queryParams.mode && preParams && queryParams.mode == preParams.mode || queryParams.mode == undefined && preParams &&folderMap[preParams.mode])
 				{
-					resource = await getResource("/Akamatsu-so/image/" + folderMap[preParams.mode]);
+					resource = await getResource(folderMap[preParams.mode]);
 
 					Object.assign(params, preParams);
 
@@ -560,7 +560,7 @@
 				}
 				else if(queryParams.mode && folderMap[queryParams.mode])
 				{
-					resource = await getResource("/Akamatsu-so/image/" + folderMap[queryParams.mode]);
+					resource = await getResource(folderMap[queryParams.mode]);
 
 					const cond0 = resource.levels[0];
 					intialize(cond0.h, cond0.w, cond0.score, cond0.point, cond0.tag);
@@ -571,7 +571,7 @@
 				}
 				else
 				{
-					resource = await getResource("/Akamatsu-so/image/" + folderMap.tamamusu);
+					resource = await getResource(folderMap.tamamusu);
 					
 					const cond0 = resource.levels[0];
 					intialize(cond0.h, cond0.w, cond0.score, cond0.point, cond0.tag);
