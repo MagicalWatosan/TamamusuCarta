@@ -543,6 +543,11 @@
 					jiminsousai: "./images/自民党総裁選2024/"
 				};
 
+
+				
+		const config = await fetch("./images/Tamamusu/_config.txt").then(response => response.json());
+
+console.log(config);
 				const queryParams = getQueryParams();
 
 				console.log(queryParams)
