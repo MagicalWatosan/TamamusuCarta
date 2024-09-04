@@ -1,4 +1,4 @@
-﻿html {
+html {
 	touch-action: manipulation;
 }
 
@@ -33,12 +33,19 @@ body {
 	height: 50px;
 }
 
-#creditButton {
+#nextGame {
 	position: absolute;
-	top: 400px;
-	left: 300px;
-	width: 70px;
-	height: 50px;	
+	top: 730px;
+	left: 150px;
+	width: 600px;
+	height: 50px;
+}
+
+#footer {
+	display: flex;
+	justify-content: space-between; /* 左右の要素を端に寄せる */
+	align-items: center; /* 垂直方向の中心に揃える */
+	width: 350px;
 }
 
 #level1 {
@@ -81,6 +88,16 @@ body {
 	height: 50px;
 }
 
+.carta {
+	width: 100px;
+	height: 100px;
+	background-color: white;
+	color: #000000;
+	background-size: cover;
+	
+	z-index: 5;
+}
+
 #progressBar {
 	position: absolute;
 	top: 100px;
@@ -115,6 +132,15 @@ body {
 .flipped .inner {
   transform: rotateY(180deg);
 }
+
+.centerTile {
+	filter: brightness(0.3);
+}
+
+.turnedTile {
+	filter: brightness(0.2);
+}
+
 
 #creditDialogClose {
 	position: absolute;
