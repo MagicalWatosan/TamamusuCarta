@@ -1,0 +1,377 @@
+{
+	"weights": [4, 1, 0, 1, 1, 1],
+	"levels":[
+		{
+			"tag": "初級",
+			"h": 3,
+			"w": 3,
+			"score": 500,
+			"point": 5
+		},
+		{
+			"tag": "中級",
+			"h": 4,
+			"w": 4,
+			"score": 1000,
+			"point": 4
+		},
+		{
+			"tag": "上級",
+			"h": 6,
+			"w": 6,
+			"score": 1500,
+			"point": 6
+		},
+		{
+			"tag": "超上級",
+			"h": 8,
+			"w": 8,
+			"score": 2000,
+			"point": 8
+		},
+		{
+			"tag": "絶級",
+			"h": 10,
+			"w": 10,
+			"score": 2500,
+			"point": 10
+		}
+	],
+	"pairs": [
+		{
+			"tag": "01_北海道",
+			"hint": "ハマナス, コロポックル",
+			"paths": [
+				"A.png", "B.png", "C.png", "D.png", "E.png", "F.png"
+			]
+		},
+		{
+			"tag": "02_青森県",
+			"hint": "りんごの花, 赤ずきんちゃん",
+			"paths": [
+				"A.png", "B.png", "C.png", "D.png", "E.png", "F.png"
+			]
+		},
+		{
+			"tag": "03_岩手県",
+			"hint": "キリの花, 宮沢　賢治",
+			"paths": [
+				"A.png", "B.png", "C.png", "D.png", "E.png", "F.png"
+			]
+		},
+		{
+			"tag": "04_宮城県",
+			"hint": "ミヤギノハギ, 伊達　政宗",
+			"paths": [
+				"A.png", "B.png", "C.png", "D.png", "E.png", "F.png"
+			]
+		},
+		{
+			"tag": "05_秋田県",
+			"hint": "フキノトウ, ナマハゲ",
+			"paths": [
+				"A.png", "B.png", "C.png", "D.png", "E.png", "F.png"
+			]
+		},
+		{
+			"tag": "06_山形県",
+			"hint": "べに花, 雪女",
+			"paths": [
+				"A.png", "B.png", "C.png", "D.png", "E.png", "F.png"
+			]
+		},
+		{
+			"tag": "07_福島県",
+			"hint": "ネモトシャクナゲ, 白虎隊",
+			"paths": [
+				"A.png", "B.png", "C.png", "D.png", "E.png", "F.png"
+			]
+		},
+		{
+			"tag": "08_茨城県",
+			"hint": "バラ, 研究員, 白衣",
+			"paths": [
+				"A.png", "B.png", "C.png", "D.png", "E.png", "F.png"
+			]
+		},
+		{
+			"tag": "09_栃木県",
+			"hint": "ヤシオツツジ, 九尾の狐",
+			"paths": [
+				"A.png", "B.png", "C.png", "D.png", "E.png", "F.png"
+			]
+		},
+		{
+			"tag": "10_群馬県",
+			"hint": "レンゲツツジ, グンマー",
+			"paths": [
+				"A.png", "B.png", "C.png", "D.png", "E.png", "F.png"
+			]
+		},
+		{
+			"tag": "11_埼玉県",
+			"hint": "サクラソウ, 表現の天使",
+			"paths": [
+				"A.png", "B.png", "C.png", "D.png", "E.png", "F.png"
+			]
+		},
+		{
+			"tag": "12_千葉県",
+			"hint": "菜の花, 表現の悪魔",
+			"paths": [
+				"A.png", "B.png", "C.png", "D.png", "E.png", "F.png"
+			]
+		},
+		{
+			"tag": "13_東京都",
+			"hint": "ソメイヨシノ, 表現の自由",
+			"paths": [
+				"A.png", "B.png", "C.png", "D.png", "E.png", "F.png"
+			]
+		},
+		{
+			"tag": "14_神奈川県",
+			"hint": "ヤマユリ, リベーラ",
+			"paths": [
+				"A.png", "B.png", "C.png", "D.png", "E.png", "F.png"
+			]
+		},
+		{
+			"tag": "15_新潟県",
+			"hint": "チューリップ, 上杉　謙信",
+			"paths": [
+				"A.png", "B.png", "C.png", "D.png", "E.png", "F.png"
+			]
+		},
+		{
+			"tag": "16_富山県",
+			"hint": "チューリップ, 富山の薬売り, ネコマタ",
+			"paths": [
+				"A.png", "B.png", "C.png", "D.png", "E.png", "F.png"
+			]
+		},
+		{
+			"tag": "17_石川県",
+			"hint": "クロユリ, 加賀友禅",
+			"paths": [
+				"A.png", "B.png", "C.png", "D.png", "E.png", "F.png"
+			]
+		},
+		{
+			"tag": "18_福井県",
+			"hint": "水仙, メガネ, 恐竜",
+			"paths": [
+				"A.png", "B.png", "C.png", "D.png", "E.png", "F.png"
+			]
+		},
+		{
+			"tag": "19_山梨県",
+			"hint": "フジザクラ, 武田　信玄",
+			"paths": [
+				"A.png", "B.png", "C.png", "D.png", "E.png", "F.png"
+			]
+		},
+		{
+			"tag": "20_長野県",
+			"hint": "リンドウ, Cちゃん",
+			"paths": [
+				"A.png", "B.png", "C.png", "D.png", "E.png", "F.png"
+			]
+		},
+		{
+			"tag": "21_岐阜県",
+			"hint": "レンゲソウ, サルボボ",
+			"paths": [
+				"A.png", "B.png", "C.png", "D.png", "E.png", "F.png"
+			]
+		},
+		{
+			"tag": "22_静岡県",
+			"hint": "ツツジ, 天女の羽衣伝説",
+			"paths": [
+				"A.png", "B.png", "C.png", "D.png", "E.png", "F.png"
+			]
+		},
+		{
+			"tag": "23_愛知県",
+			"hint": "カキツバタ, 車の整備工",
+			"paths": [
+				"A.png", "B.png", "C.png", "D.png", "E.png", "F.png"
+			]
+		},
+		{
+			"tag": "24_三重県",
+			"hint": "ハナショウブ, 伊賀忍者",
+			"paths": [
+				"A.png", "B.png", "C.png", "D.png", "E.png", "F.png"
+			]
+		},
+		{
+			"tag": "25_滋賀県",
+			"hint": "シャクナゲ, モミジ, 甲賀忍者, 信楽焼タヌキ",
+			"paths": [
+				"A.png", "B.png", "C.png", "D.png", "E.png", "F.png"
+			]
+		},
+		{
+			"tag": "26_京都府",
+			"hint": "しだれ桜, 表現の鬼ちゃん",
+			"paths": [
+				"A.png", "B.png", "C.png", "D.png", "E.png", "F.png"
+			]
+		},
+		{
+			"tag": "27_大阪府",
+			"hint": "ウメ, サクラソウ, ハリセンお笑い, 関西人姉ちゃん",
+			"paths": [
+				"A.png", "B.png", "C.png", "D.png", "E.png", "F.png"
+			]
+		},
+		{
+			"tag": "28_兵庫県",
+			"hint": "ノジギク, 異人館メイド",
+			"paths": [
+				"A.png", "B.png", "C.png", "D.png", "E.png", "F.png"
+			]
+		},
+		{
+			"tag": "29_奈良県",
+			"hint": "奈良八重桜, 阿修羅像, 鹿の角",
+			"paths": [
+				"A.png", "B.png", "C.png", "D.png", "E.png", "F.png"
+			]
+		},
+		{
+			"tag": "30_和歌山県",
+			"hint": "ウメ, カラス天狗, 八咫烏",
+			"paths": [
+				"A.png", "B.png", "C.png", "D.png", "E.png", "F.png"
+			]
+		},
+		{
+			"tag": "31_鳥取県",
+			"hint": "二十世紀梨の花, 砂漠の民, 因幡の白ウサギ",
+			"paths": [
+				"A.png", "B.png", "C.png", "D.png", "E.png", "F.png"
+			]
+		},
+		{
+			"tag": "32_島根県",
+			"hint": "牡丹の花, 出雲, 大国主",
+			"paths": [
+				"A.png", "B.png", "C.png", "D.png", "E.png", "F.png"
+			]
+		},
+		{
+			"tag": "33_岡山県",
+			"hint": "ももの花, 桃太郎",
+			"paths": [
+				"A.png", "B.png", "C.png", "D.png", "E.png", "F.png"
+			]
+		},
+		{
+			"tag": "34_広島県",
+			"hint": "もみじ, レモン",
+			"paths": [
+				"A.png", "B.png", "C.png", "D.png", "E.png", "F.png"
+			]
+		},
+		{
+			"tag": "35_山口県",
+			"hint": "夏みかんの花, 総理大臣輩出の地, 長州藩",
+			"paths": [
+				"A.png", "B.png", "C.png", "D.png", "E.png", "F.png"
+			]
+		},
+		{
+			"tag": "36_徳島県",
+			"hint": "すだちの花, 阿波踊り, 鳴門の渦巻き",
+			"paths": [
+				"A.png", "B.png", "C.png", "D.png", "E.png", "F.png"
+			]
+		},
+		{
+			"tag": "37_香川県",
+			"hint": "オリーブの花, うどん",
+			"paths": [
+				"A.png", "B.png", "C.png", "D.png", "E.png", "F.png"
+			]
+		},
+		{
+			"tag": "38_愛媛県",
+			"hint": "ミカンの花, みかん, ポンジュース",
+			"paths": [
+				"A.png", "B.png", "C.png", "D.png", "E.png", "F.png"
+			]
+		},
+		{
+			"tag": "39_高知県",
+			"hint": "ヤマモモの花, 坂本　龍馬",
+			"paths": [
+				"A.png", "B.png", "C.png", "D.png", "E.png", "F.png"
+			]
+		},
+		{
+			"tag": "40_福岡県",
+			"hint": "梅の花, 受験生お守り",
+			"paths": [
+				"A.png", "B.png", "C.png", "D.png", "E.png", "F.png"
+			]
+		},
+		{
+			"tag": "41_佐賀県",
+			"hint": "クスノキ, 陶芸師",
+			"paths": [
+				"A.png", "B.png", "C.png", "D.png", "E.png", "F.png"
+			]
+		},
+		{
+			"tag": "42_長崎県",
+			"hint": "雲仙のツツジ, ツバキ, シスター",
+			"paths": [
+				"A.png", "B.png", "C.png", "D.png", "E.png", "F.png"
+			]
+		},
+		{
+			"tag": "43_熊本県",
+			"hint": "リンドウ, 阿蘇山, 火の国",
+			"paths": [
+				"A.png", "B.png", "C.png", "D.png", "E.png", "F.png"
+			]
+		},
+		{
+			"tag": "44_大分県",
+			"hint": "ブンゴウメ, 地獄温泉巡り",
+			"paths": [
+				"A.png", "B.png", "C.png", "D.png", "E.png", "F.png"
+			]
+		},
+		{
+			"tag": "45_宮崎県",
+			"hint": "ハマユウ, 畜産農家, 農家の娘",
+			"paths": [
+				"A.png", "B.png", "C.png", "D.png", "E.png", "F.png"
+			]
+		},
+		{
+			"tag": "46_鹿児島県",
+			"hint": "ミヤマキリシマ, 宇宙飛行士",
+			"paths": [
+				"A.png", "B.png", "C.png", "D.png", "E.png", "F.png"
+			]
+		},
+		{
+			"tag": "47_沖縄県",
+			"hint": "デイゴの花, ハイビスカス, 水着, 民族衣装",
+			"paths": [
+				"A.png", "B.png", "C.png", "D.png", "E.png", "F.png"
+			]
+		}
+	],
+	"backs": {
+		"初級": ["背面.png"],
+		"中級": ["背面.png"],
+		"上級": ["背面.png"]
+	},
+	"objs": ["タマゴ.png", "タマゴ.png"]
+}
