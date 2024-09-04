@@ -77,7 +77,9 @@ async function getResource(rootFolder)
 	{
 		const configFile = rootFolder + "_config.txt";
 		
+console.log(configFile);
 		const config = await fetch(configFile).then(response => response.json());
+
 		
 		config.rootFolder = rootFolder;
 		
