@@ -140,9 +140,14 @@
 					const imageFile = new File([blob], "image.png", {
 						type: "image/png",
 					});
+					
+					const text = "SCORE:" + getById("scoreText").innerText + "\r\nTIME:" + getById("timeText").innerText + "\r\n"
+					           + (resource.title ? "#" + resource.title : "#たまむす\r\n#たまむすカルタ");
 				
+					navigator.clipboard.writeText(text);
+					
 					navigator.share({
-						text: "SCORE:" + params.score + "\r\nTIME:" + params.elapsedTime + "\r\n#たまむす #たまむすカルタ",
+						text: text,
 						url: window.location.href,
 						files: [imageFile],
 					}).then(() => {
