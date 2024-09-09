@@ -172,7 +172,7 @@
 				
 				ctx.font = '42px serif';
 				ctx.fillStyle = "#111111";
-				ctx.fillText("SCORE:" + params.score + ", TIME:" + getById("timeText").innerText, 20, 665);
+				ctx.fillText("SCORE:" + Math.floor(params.score) + ", TIME:" + getById("timeText").innerText, 20, 665);
 
 				resultDialog.showModal();
 			}
