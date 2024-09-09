@@ -303,7 +303,7 @@
 								localStorage.setItem("params", JSON.stringify(params));
 							}
 
-							getById("scoreText").innerText = params.score;
+							getById("scoreText").innerText = Math.floor(params.score);
 							
 							screenUnlock();
 						}, 500);
@@ -486,7 +486,7 @@
 				
 				setTiles();
 				
-				getById("scoreText").innerText = params.score;
+				getById("scoreText").innerText = Math.floor(params.score);
 				getById("point").innerText = p;
 				
 				timeObj.active = false;
@@ -604,7 +604,7 @@
 				progressBar.style.display = "";
 //--------------------------------------------------------------------------------------------------------------------//
 				const folderMap = {
-					tamamusu: "./images/たまむす！/",
+					tamamusu: "./images/たまむす/",
 					jiminsousai: "./images/自民党総裁選2024/"
 				};
 
@@ -624,7 +624,7 @@
 					
 					console.log(preParams)
 
-					getById("scoreText").innerText = params.score;
+					getById("scoreText").innerText = Math.floor(params.score);
 					
 					timeObj.active = true;
 					timeObj.start =  new Date().getTime();
