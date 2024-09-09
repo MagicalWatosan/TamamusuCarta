@@ -12,7 +12,7 @@
 		
 		</table>
 
-		<div id="scoreText"> score:1000</div>
+		SCORE:<span id="scoreText"> 1000</span> &emsp;&emsp; TIME:<span id="timeText"> 0:00:000</span>
 
 		<div class="levelSelect"> </div>
 
@@ -65,17 +65,50 @@
 			const host = window.location.host;
 			
 			let resource;
+			let tempObj;
 			
 			const params = {
 				rowCount: 0,
 				columnCount: 0,
-				obj: null,
 				tiles: [],
 				score: 0,
 				elapsedTime: 0
 			};
 			
+			const timeObj = {
+				active: false,
+				start: 0,
+				turn1: 0
+			}
+			
 			const hintMap = new Map();
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+			window.addEventListener('focus', () =>
+			{
+				if(timeObj.active) {
+					timeObj.start =  new Date().getTime();
+				}
+			});
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+			function setTime()
+			{
+				if(timeObj.active)
+				{
+					const t = new Date().getTime();
+					params.elapsedTime += t - timeObj.start;
+					timeObj.start = t
+					const ms = params.elapsedTime % 1000;
+					const s = Math.floor((params.elapsedTime / 1000) % 60);
+					const m = Math.floor((params.elapsedTime / 60000));
+					
+					getById("timeText").innerText = m + ":" + s + ":" + ms;
+					
+					localStorage.setItem("params", JSON.stringify(params));
+				}
+				else {
+					getById("timeText").innerText = "0:00:000";
+				}
+			}
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
 			function setEasy()
 			{
@@ -87,11 +120,11 @@
 				const ptObj = getById("point");
 				const point = Number(ptObj.innerText)
 				
-				if(params.obj.hintText && point > 0)
+				if(tempObj.hintText && point > 0)
 				{
-					hintMap.set(params.obj, params.obj.hintText);
+					hintMap.set(tempObj, tempObj.hintText);
 					
-					getById("hintText").innerText = params.obj.hintText;
+					getById("hintText").innerText = tempObj.hintText;
 					ptObj.innerText = point - 1;
 				}
 
@@ -109,7 +142,7 @@
 					});
 				
 					navigator.share({
-						text: "SCORE:" + params.score + "\r\n#たまむす #たまむすカルタ",
+						text: "SCORE:" + params.score + "\r\nTIME:" + params.elapsedTime + "\r\n#たまむす #たまむすカルタ",
 						url: window.location.href,
 						files: [imageFile],
 					}).then(() => {
@@ -137,9 +170,9 @@
 				ctx.fillStyle = "#CCCCCC";
 				ctx.fillRect(0, 600, 600, 100);
 				
-				ctx.font = '60px serif';
+				ctx.font = '42px serif';
 				ctx.fillStyle = "#111111";
-				ctx.fillText("SCORE:" + params.score, 150, 680);
+				ctx.fillText("SCORE:" + params.score + ", TIME:" + getById("timeText").innerText, 20, 665);
 
 				resultDialog.showModal();
 			}
@@ -147,11 +180,25 @@
 			function setResult(obj)
 			{
 				obj.classList.add("turnedTile");
+				
+				if(obj.flipped)
+				{
+					obj.children[0].style.margin = "10px 10px 10px 10px";
+					obj.children[0].children[0].style.width = "80px";
+					obj.children[0].children[0].style.height = "80px";
+					obj.children[0].children[1].style.width = "80px";
+					obj.children[0].children[1].style.height = "80px";
+				}
 	
 				const cvs = getById("output");
 				const ctx = cvs.getContext("2d");
 				
 				const size = 600 / Math.max(params.rowCount, params.columnCount) - 5;
+
+				const t = (timeObj.turn2 - timeObj.turn1) / 1000;
+				const rate = t <= 2 ? 1
+				           : t >  5 ? 0.5
+				           :          (5 - t) / 6 + 0.5;
 
 				
 				if(obj.__count == 1)
@@ -159,21 +206,21 @@
 					obj.style.border = "medium solid #FFFF00";
 					ctx.fillStyle = "#FFFF00";
 					
-					params.score += obj.__id != -1 ? 150 : 0;
+					params.score += obj.__id != -1 ? 150 * rate : 0;
 				}
 				else if(obj.__count == 2)
 				{
 					obj.style.border = "medium solid #00FF00";
 					ctx.fillStyle = "#00FF00";
 
-					params.score += obj.__id != -1 ? 100 : 0;
+					params.score += obj.__id != -1 ? 100 * rate : 0;
 				}
 				else if(obj.__count <= 5)
 				{
 					obj.style.border = "medium solid #00FFFF";
 					ctx.fillStyle = "#00FFFF";
 
-					params.score += obj.__id != -1 ? 50 : 0;
+					params.score += obj.__id != -1 ? 50 * rate : 0;
 				}
 				else
 				{
@@ -196,6 +243,12 @@
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
 			function turn(obj)
 			{
+				if( !timeObj.active)
+				{
+					timeObj.active = true;
+					timeObj.start = new Date().getTime();
+				}
+
 				params.score = Math.max(0,  params.score - 10);
 
 				obj.style.border = "medium solid #FF0099";
@@ -208,24 +261,29 @@
 				
 				params.tiles[obj.__i][obj.__j].count = obj.__count;
 				
-				if(params.obj)
+				if(tempObj)
 				{
 					hintButton.disabled = true;
 					hintText.innerText = "";
 					
-					if(obj.__id == params.obj.__id)
+					if(obj.__id == tempObj.__id)
 					{
 						screenLock();
+						
+						timeObj.turn2 = new Date().getTime();
 
 						setTimeout(() =>
 						{
 							params.tiles[obj.__i][obj.__j].flipped = true;
-							params.tiles[params.obj.__i][params.obj.__j].flipped = true;
+							params.tiles[tempObj.__i][tempObj.__j].flipped = true;
+							
+							obj.flipped = true;
+							tempObj.flipped = true;
 
 							setResult(obj);
-							setResult(params.obj);
+							setResult(tempObj);
 							
-							params.obj = null;
+							tempObj = null;
 							
 							if(obj.__id != -1) {
 								params.remain -= 2;
@@ -245,7 +303,7 @@
 								localStorage.setItem("params", JSON.stringify(params));
 							}
 
-							getById("scoreText").innerText = "SCORE:" + params.score;
+							getById("scoreText").innerText = params.score;
 							
 							screenUnlock();
 						}, 500);
@@ -255,22 +313,24 @@
 						screenLock();
 
 						obj.disabled = false;
-						params.obj.disabled = false;
+						tempObj.disabled = false;
 
 						setTimeout(() =>
 						{
 							obj.reset()
-							params.obj.reset();
-
 							obj.style.border = null;
-							params.obj.style.border = null;
-							
 							obj.disabled = false;
-							params.obj.disabled = false;
 
-							params.obj = null;
+							if(tempObj)
+							{
+								tempObj.reset();
+								tempObj.style.border = null;
+								tempObj.disabled = false;
 
-							localStorage.setItem("params", JSON.stringify(params));
+								tempObj = null;
+
+								localStorage.setItem("params", JSON.stringify(params));
+							}
 							
 							screenUnlock();
 						}, 1500);
@@ -294,10 +354,11 @@
 
 					localStorage.setItem("params", JSON.stringify(params));
 
-					params.obj = obj;
+					tempObj = obj;
+					timeObj.turn1 = new Date().getTime();
 				}
 				
-				getById("scoreText").innerText = "SCORE:" + params.score;
+				getById("scoreText").innerText = Math.floor(params.score);
 			}
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
 			function intialize(w, h, score, p, tag)
@@ -425,8 +486,11 @@
 				
 				setTiles();
 				
-				getById("scoreText").innerText = "SCORE:" + params.score;
+				getById("scoreText").innerText = params.score;
 				getById("point").innerText = p;
+				
+				timeObj.active = false;
+				params.elapsedTime = 0;
 				
 				resultDialog.close();
 			}
@@ -452,6 +516,7 @@
 					{
 						const cell = row.insertCell();
 						const tile = params.tiles[i][j];
+						
 
 						cell.innerHTML = "<div class='card flipped'>" +
 						"<div class='inner'>" +
@@ -470,6 +535,7 @@
 						obj.__x = (j + 0.5) / w;
 						obj.__y = (i + 0.5) / h;
 						obj.__count = tile.count;
+						obj.flipped = tile.flipped;
 
 						obj.hintText = tile.hintText;
 						
@@ -555,8 +621,13 @@
 					setTiles();
 					
 					params.score = preParams.score;
+					
+					console.log(preParams)
 
-					getById("scoreText").innerText = "SCORE:" + params.score;
+					getById("scoreText").innerText = params.score;
+					
+					timeObj.active = true;
+					timeObj.start =  new Date().getTime();
 				}
 				else if(queryParams.mode && folderMap[queryParams.mode])
 				{
@@ -593,7 +664,7 @@
 					document.title = resource.title;
 				}
 				else {
-					document.title = "たまむす！カルタ";
+					document.title = "たまむすカルタ";
 				}
 				
 				getById("hintEgg").src = resource.rootFolder + "objs/" + resource.objs[1];
@@ -601,6 +672,8 @@
 				progressBar.style.display = "none";
 
 				console.log("startup");
+				
+				setInterval(setTime, 100);
 
 				screenUnlock();
 			}
