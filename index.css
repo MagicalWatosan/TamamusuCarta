@@ -134,13 +134,12 @@ body {
 }
 
 .centerTile {
-	filter: brightness(0.3);
+	filter: brightness(0.5);
 }
 
 .turnedTile {
-	filter: brightness(0.2);
+	filter: brightness(0.7);
 }
-
 
 #creditDialogClose {
 	position: absolute;
