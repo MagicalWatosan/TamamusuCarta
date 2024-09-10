@@ -37,7 +37,7 @@
 		<dialog id="resultDialog">
 			<canvas id="output" width=600 height=700> </canvas>
 			
-			<input type="button" id="tweetButton" value="共有" onclick="tweet();">
+			<input type="button" id="tweetButton" value="📋&共有" onclick="tweet();">
 			<div id="nextGame" class="levelSelect"> </div>
 		</dialog>
 
@@ -142,7 +142,8 @@
 					});
 					
 					const text = "SCORE:" + getById("scoreText").innerText + "\r\nTIME:" + getById("timeText").innerText + "\r\n"
-					           + (resource.title ? "#" + resource.title : "#たまむす\r\n#たまむすカルタ");
+					           + (resource.title ? "#" + resource.title + "\r\n" : "#たまむす\r\n#たまむすカルタ\r\n")
+					           + window.location.href;
 				
 					navigator.clipboard.writeText(text);
 					
