@@ -2,21 +2,27 @@
 	"title": "総裁候補カルタ2024",
 	"hushtag": ["#自民党総裁選2024"],
 	"weights": [5, 3, 3, 1, 1, 1, 1, 1],
-	"unique" : true,
 	"levels":[
 		{
 			"tag": "初級",
 			"h": 3,
 			"w": 3,
 			"score": 500,
-			"point": 5
+			"point": 0
 		},
 		{
 			"tag": "中級",
 			"h": 4,
 			"w": 4,
 			"score": 1000,
-			"point": 4
+			"point": 0
+		},
+		{
+			"tag": "上級",
+			"h": 6,
+			"w": 6,
+			"score": 1500,
+			"point": 0
 		}
 	],
 	"pairs": [
