@@ -420,7 +420,8 @@
 
 				while(pairs.length > 0 && unitList.length < num)
 				{
-					const pair = pairs.splice(Math.floor(Math.random() * pairs.length), 1)[0];
+					const pair = resource.unique ? pairs.splice(Math.floor(Math.random() * pairs.length), 1)[0]
+					                             : pairs[Math.floor(Math.random() * pairs.length)];
 					let idx1, idx2;
 					
 					if(pair.weights)
