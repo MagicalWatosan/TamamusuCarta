@@ -621,7 +621,10 @@
 				
 				const preParams = JSON.parse(localStorage.getItem("params"));
 				
-				if(queryParams.mode && preParams && queryParams.mode == preParams.mode || queryParams.mode == undefined && preParams &&folderMap[preParams.mode])
+				if(queryParams.mode == undefined && preParams &&folderMap[preParams.mode]) {
+					window.location.href = window.location.origin + window.location.pathname + "?mode=" + preParams.mode;
+				}
+				else if(queryParams.mode && preParams && queryParams.mode == preParams.mode)
 				{
 					resource = await getResource(folderMap[preParams.mode]);
 
@@ -631,6 +634,7 @@
 					
 					params.score = preParams.score;
 					
+					console.log("preParams:");
 					console.log(preParams)
 
 					getById("scoreText").innerText = Math.floor(params.score);
@@ -649,16 +653,8 @@
 					
 					params.mode = queryParams.mode;
 				}
-				else
-				{
-					resource = await getResource(folderMap.tamamusu);
-					
-					const cond0 = resource.levels[0];
-					intialize(cond0.h, cond0.w, cond0.score, cond0.point, cond0.tag);
-					
-					localStorage.setItem("params", null);
-
-					params.mode = "tamamusu";
+				else {
+					window.location.href = window.location.origin + window.location.pathname + "?mode=tamamusu";
 				}
 
 				const ar = resource.levels.map(o => '<input type="button" value="' + o.tag + '" style="height:40px; width:60px;" onclick="intialize(' + o.h + ', ' + o.w + ', ' + o.score + ', ' + o.point + ', \'' + o.tag + '\');">');
