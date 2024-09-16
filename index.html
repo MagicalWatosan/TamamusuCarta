@@ -621,6 +621,8 @@
 				
 				const preParams = JSON.parse(localStorage.getItem("params"));
 				
+				console.log(preParams);
+
 				if(queryParams.mode == undefined && preParams &&folderMap[preParams.mode]) {
 					window.location.href = window.location.origin + window.location.pathname + "?mode=" + preParams.mode;
 				}
