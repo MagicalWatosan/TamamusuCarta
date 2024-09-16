@@ -169,6 +169,8 @@
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
 			function finish()
 			{
+				timeObj.active = false;
+
 				const cvs = getById("output");
 				const ctx = cvs.getContext("2d");
 								
