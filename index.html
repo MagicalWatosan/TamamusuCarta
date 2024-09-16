@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta name="author" content="@MagicalWatosan">
-		<title> たまむす！カルタ </title>
+		<title> たまむすカルタ </title>
 		<link rel="stylesheet" href="index.css"/>
 		<script type="text/javascript" src="tools.js"></script>
 	</head>
@@ -142,7 +142,8 @@
 					});
 					
 					const text = "SCORE:" + getById("scoreText").innerText + "\r\nTIME:" + getById("timeText").innerText + "\r\n"
-					           + (resource.title ? "#" + resource.title + "\r\n" : "#たまむすカルタ\r\n#たまむす\r\n#赤松健\r\n")
+					           + (resource.title ? "#" + resource.title : "#たまむすカルタ") + "\r\n"
+					           + (resource.hushtag ? resource.hushtag.join("\r\n") + "\r\n" : "")
 					           + window.location.href;
 				
 					navigator.clipboard.writeText(text);
@@ -611,7 +612,8 @@
 //--------------------------------------------------------------------------------------------------------------------//
 				const folderMap = {
 					tamamusu: "./images/たまむす！/",
-					jiminsousai: "./images/自民党総裁選2024/"
+					jiminsousai: "./images/自民党総裁選2024/",
+					sousaikouho2024: "./images/総裁候補2024/"
 				};
 
 				const queryParams = getQueryParams();
