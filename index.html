@@ -90,6 +90,15 @@
 				}
 			});
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+			function time2string(time)
+			{
+				const ms = time % 1000;
+				const s = Math.floor((time / 1000) % 60);
+				const m = Math.floor(time / 60000);
+				
+				return m + ":" + s + ":" + ms;
+			}
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
 			function setTime()
 			{
 				if(timeObj.active)
@@ -97,11 +106,8 @@
 					const t = new Date().getTime();
 					params.elapsedTime += t - timeObj.start;
 					timeObj.start = t
-					const ms = params.elapsedTime % 1000;
-					const s = Math.floor((params.elapsedTime / 1000) % 60);
-					const m = Math.floor((params.elapsedTime / 60000));
-					
-					getById("timeText").innerText = m + ":" + s + ":" + ms;
+
+					getById("timeText").innerText = time2string(params.elapsedTime);
 					
 					localStorage.setItem("params", JSON.stringify(params));
 				}
@@ -141,9 +147,9 @@
 						type: "image/png",
 					});
 					
-					const text = "SCORE:" + getById("scoreText").innerText + "\r\nTIME:" + getById("timeText").innerText + "\r\n"
+					const text = "SCORE:" + getById("scoreText").innerText + "\r\nTIME:" + time2string(params.elapsedTime) + "\r\n"
 					           + (resource.title ? "#" + resource.title : "#たまむすカルタ") + "\r\n"
-					           + (resource.hushtag ? resource.hushtag.join("\r\n") + "\r\n" : "")
+					           + (resource.hushtag ? resource.hushtag.join("\r\n") + "\r\n" : "\r\n")
 					           + window.location.href;
 				
 					navigator.clipboard.writeText(text);
@@ -170,7 +176,7 @@
 			function finish()
 			{
 				timeObj.active = false;
-
+	
 				const cvs = getById("output");
 				const ctx = cvs.getContext("2d");
 								
@@ -181,7 +187,7 @@
 				
 				ctx.font = '42px serif';
 				ctx.fillStyle = "#111111";
-				ctx.fillText("SCORE:" + Math.floor(params.score) + ", TIME:" + getById("timeText").innerText, 20, 665);
+				ctx.fillText("SCORE:" + Math.floor(params.score) + ", TIME:" + time2string(params.elapsedTime), 20, 665);
 
 				resultDialog.showModal();
 			}
@@ -605,6 +611,78 @@
 						}
 					}
 				}
+			}
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+			const API_KEY = 'AIzaSyDNjnKYptme9OgjqfOARiRlL8VHtVPrwLk';
+			const FOLDER_ID = '1JrqBwf_80cUNEhsaiccxt7jlLYVJQkNZ';
+   
+			async function getResourceFromGdrive()
+			{
+			    await new Promise((resolve, reject) =>
+			    {
+			    	gapi.load('client', () =>
+				    {
+				    	gapi.client.setApiKey(API_KEY);
+
+						gapi.client.load('https://www.googleapis.com/discovery/v1/apis/drive/v3/rest').then(() =>
+						{
+							gapi.client.drive.files.list({
+								q: `'${FOLDER_ID}' in parents and trashed = false`,
+								fields: "nextPageToken, files(id, name, mimeType)"
+							}).then(async response =>
+							{
+
+								let configPromise = null;
+								const folders = {};
+								
+								response.result.files.forEach(async file =>
+								{
+									
+									
+									if(file.mimeType == "application/vnd.google-apps.folder")
+									{
+										if(file.name == "pairs" || file.name == "backs" || file.name == "objs") {
+											folders[file.name] = file;
+										}
+									}
+									else if(file.name == "config.txt")
+									{
+										try
+										{
+											configPromise = gapi.client.drive.files.get({
+												fileId: file.id,
+												alt: 'media'
+											}).then(res => {
+												return JSON.parse(res.body);
+											});
+										}
+										catch(e) {}
+									}
+								});
+
+
+	//							console.log(folders);
+//								console.log(await configPromise);
+								
+								if(configPromise)
+								{
+									const config = await configPromise;
+									
+									console.log(config)
+								}
+								else
+								{
+									
+								}
+								
+								
+								resolve();
+							});
+						}, error => {
+							console.error('Error loading GAPI client for API', error);
+						});
+				    });
+				});
 			}
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
 			async function startup()
