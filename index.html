@@ -149,7 +149,7 @@
 					
 					const text = "SCORE:" + getById("scoreText").innerText + "\r\nTIME:" + time2string(params.elapsedTime) + "\r\n"
 					           + (resource.title ? "#" + resource.title : "#たまむすカルタ") + "\r\n"
-					           + (resource.hushtag ? resource.hushtag.join("\r\n") + "\r\n" : "\r\n")
+					           + (resource.hushtag ? resource.hushtag.join("\r\n") + "\r\n\r\n" : "\r\n\r\n")
 					           + window.location.href;
 				
 					navigator.clipboard.writeText(text);
