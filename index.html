@@ -613,77 +613,7 @@
 				}
 			}
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
-			const API_KEY = 'AIzaSyDNjnKYptme9OgjqfOARiRlL8VHtVPrwLk';
-			const FOLDER_ID = '1JrqBwf_80cUNEhsaiccxt7jlLYVJQkNZ';
-   
-			async function getResourceFromGdrive()
-			{
-			    await new Promise((resolve, reject) =>
-			    {
-			    	gapi.load('client', () =>
-				    {
-				    	gapi.client.setApiKey(API_KEY);
-
-						gapi.client.load('https://www.googleapis.com/discovery/v1/apis/drive/v3/rest').then(() =>
-						{
-							gapi.client.drive.files.list({
-								q: `'${FOLDER_ID}' in parents and trashed = false`,
-								fields: "nextPageToken, files(id, name, mimeType)"
-							}).then(async response =>
-							{
-
-								let configPromise = null;
-								const folders = {};
-								
-								response.result.files.forEach(async file =>
-								{
-									
-									
-									if(file.mimeType == "application/vnd.google-apps.folder")
-									{
-										if(file.name == "pairs" || file.name == "backs" || file.name == "objs") {
-											folders[file.name] = file;
-										}
-									}
-									else if(file.name == "config.txt")
-									{
-										try
-										{
-											configPromise = gapi.client.drive.files.get({
-												fileId: file.id,
-												alt: 'media'
-											}).then(res => {
-												return JSON.parse(res.body);
-											});
-										}
-										catch(e) {}
-									}
-								});
-
-
-	//							console.log(folders);
-//								console.log(await configPromise);
-								
-								if(configPromise)
-								{
-									const config = await configPromise;
-									
-									console.log(config)
-								}
-								else
-								{
-									
-								}
-								
-								
-								resolve();
-							});
-						}, error => {
-							console.error('Error loading GAPI client for API', error);
-						});
-				    });
-				});
-			}
+	
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
 			async function startup()
 			{
