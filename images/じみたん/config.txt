@@ -1,6 +1,6 @@
 {
 	"title": "じみたんカルタ",
-	"hushtag": ["#じみたん", "#自民党"],
+	"hushtag": ["#じみたん", "#じみたんカルタ", "#自民党"],
 	"weights": [1, 1],
 	"unique": true,
 	"levels":[
@@ -9,21 +9,21 @@
 			"h": 3,
 			"w": 3,
 			"score": 500,
-			"point": 5
+			"point": 0
 		},
 		{
 			"tag": "中級",
 			"h": 4,
 			"w": 4,
 			"score": 1000,
-			"point": 4
+			"point": 0
 		},
 		{
 			"tag": "上級",
 			"h": 5,
 			"w": 5,
 			"score": 1500,
-			"point": 6
+			"point": 0
 		}
 	],
 	"pairs": [
