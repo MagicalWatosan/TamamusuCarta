@@ -1,0 +1,138 @@
+{
+	"title": "じみたんカルタ",
+	"weights": [1, 1],
+	"levels":[
+		{
+			"tag": "初級",
+			"h": 3,
+			"w": 3,
+			"score": 500,
+			"point": 5
+		},
+		{
+			"tag": "中級",
+			"h": 4,
+			"w": 4,
+			"score": 1000,
+			"point": 4
+		},
+		{
+			"tag": "上級",
+			"h": 5,
+			"w": 5,
+			"score": 1500,
+			"point": 6
+		}
+	],
+	"pairs": [
+		{
+			"tag": "01",
+			"hint": "",
+			"paths": [
+				"jimitan_01.png", "jimitan_01 - コピー.png"
+			]
+		},
+		{
+			"tag": "02",
+			"hint": "",
+			"paths": [
+				"jimitan_02.png", "jimitan_02 - コピー.png"
+			]
+		},
+		{
+			"tag": "03",
+			"hint": "",
+			"paths": [
+				"jimitan_03.png", "jimitan_03 - コピー.png"
+			]
+		},
+		{
+			"tag": "04",
+			"hint": "",
+			"paths": [
+				"jimitan_04.png", "jimitan_04 - コピー.png"
+			]
+		},
+		{
+			"tag": "05",
+			"hint": "",
+			"paths": [
+				"jimitan_05.png", "jimitan_05 - コピー.png"
+			]
+		},
+		{
+			"tag": "06",
+			"hint": "",
+			"paths": [
+				"jimitan_06.png", "jimitan_06 - コピー.png"
+			]
+		},
+		{
+			"tag": "07",
+			"hint": "",
+			"paths": [
+				"jimitan_07.png", "jimitan_07 - コピー.png"
+			]
+		},
+		{
+			"tag": "08",
+			"hint": "",
+			"paths": [
+				"jimitan_08.png", "jimitan_08 - コピー.png"
+			]
+		},
+		{
+			"tag": "09",
+			"hint": "",
+			"paths": [
+				"jimitan_09.png", "jimitan_09 - コピー.png"
+			]
+		},
+		{
+			"tag": "10",
+			"hint": "",
+			"paths": [
+				"jimitan_10.png", "jimitan_10 - コピー.png"
+			]
+		},
+		{
+			"tag": "11",
+			"hint": "",
+			"paths": [
+				"jimitan_11.png", "jimitan_11 - コピー.png"
+			]
+		},
+
+		{
+			"tag": "12",
+			"hint": "",
+			"paths": [
+				"jimitan_12.png", "jimitan_12 - コピー.png"
+			]
+		},
+
+		{
+			"tag": "13",
+			"hint": "",
+			"paths": [
+				"jimitan_13.png", "jimitan_13 - コピー.png"
+			]
+		}
+	],
+	"backs": {
+		"初級": ["初級/1.png", "初級/2.png", "初級/3.png",
+		         "初級/4.png", "初級/5.png", "初級/6.png",
+		         "初級/7.png", "初級/8.png", "初級/9.png"],
+		"中級": ["中級/01.png", "中級/02.png", "中級/03.png", "中級/04.png",
+		         "中級/05.png", "中級/06.png", "中級/07.png", "中級/08.png",
+		         "中級/09.png", "中級/10.png", "中級/11.png", "中級/12.png",
+		         "中級/13.png", "中級/14.png", "中級/15.png", "中級/16.png"],
+		"上級": ["上級/01.png", "上級/02.png", "上級/03.png", "上級/04.png", "上級/05.png",
+		         "上級/06.png", "上級/07.png", "上級/08.png", "上級/09.png", "上級/10.png",
+		         "上級/11.png", "上級/12.png", "上級/13.png", "上級/14.png", "上級/15.png",
+		         "上級/16.png", "上級/17.png", "上級/18.png", "上級/19.png", "上級/20.png",
+		         "上級/21.png", "上級/22.png", "上級/23.png", "上級/24.png", "上級/25.png"]
+	},
+	"objs": ["jimitan_01.png"],
+	"center_fixed": true
+}
