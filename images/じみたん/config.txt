@@ -1,6 +1,8 @@
 {
 	"title": "じみたんカルタ",
+	"hushtag": ["#じみたん", "#自民党"],
 	"weights": [1, 1],
+	"unique": true,
 	"levels":[
 		{
 			"tag": "初級",
@@ -133,6 +135,6 @@
 		         "上級/16.png", "上級/17.png", "上級/18.png", "上級/19.png", "上級/20.png",
 		         "上級/21.png", "上級/22.png", "上級/23.png", "上級/24.png", "上級/25.png"]
 	},
-	"objs": ["jimitan_01.png"],
+	"objs": ["jimitan_01.png", "jimitan_01.png"],
 	"center_fixed": true
 }
