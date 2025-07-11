@@ -1,6 +1,6 @@
 {
-	"title": "じみたんカルタ(非公認)",
-	"hushtag": ["#じみたん", "#自民党"],
+	"title": "じみたんカルタ（非公認）",
+	"hushtag": ["#じみたん", "#ゆる自民"],
 	"weights": [1, 1],
 	"unique": true,
 	"levels":[
@@ -24,7 +24,15 @@
 			"w": 5,
 			"score": 1500,
 			"point": 0
+		},
+		{
+			"tag": "超上級",
+			"h": 7,
+			"w": 7,
+			"score": 2500,
+			"point": 0
 		}
+
 	],
 	"pairs": [
 		{
@@ -119,6 +127,86 @@
 			"paths": [
 				"jimitan_13.png", "jimitan_13 - コピー.png"
 			]
+		},
+		{
+			"tag": "14",
+			"hint": "",
+			"paths": [
+				"jimitan_14.png", "jimitan_14 - コピー.png"
+			]
+		},
+		{
+			"tag": "15",
+			"hint": "",
+			"paths": [
+				"jimitan_15.png", "jimitan_15 - コピー.png"
+			]
+		},
+		{
+			"tag": "16",
+			"hint": "",
+			"paths": [
+				"jimitan_16.png", "jimitan_16 - コピー.png"
+			]
+		},
+		{
+			"tag": "17",
+			"hint": "",
+			"paths": [
+				"jimitan_17.png", "jimitan_17 - コピー.png"
+			]
+		},
+		{
+			"tag": "18",
+			"hint": "",
+			"paths": [
+				"jimitan_18.png", "jimitan_18 - コピー.png"
+			]
+		},
+		{
+			"tag": "19",
+			"hint": "",
+			"paths": [
+				"jimitan_19.png", "jimitan_19 - コピー.png"
+			]
+		},
+		{
+			"tag": "20",
+			"hint": "",
+			"paths": [
+				"jimitan_20.png", "jimitan_20 - コピー.png"
+			]
+		},
+		{
+			"tag": "21",
+			"hint": "",
+			"paths": [
+				"jimitan_21.png", "jimitan_21 - コピー.png"
+			]
+		},
+
+		{
+			"tag": "22",
+			"hint": "",
+			"paths": [
+				"jimitan_22.png", "jimitan_22 - コピー.png"
+			]
+		},
+
+		{
+			"tag": "23",
+			"hint": "",
+			"paths": [
+				"jimitan_23.png", "jimitan_23 - コピー.png"
+			]
+		},
+
+		{
+			"tag": "24",
+			"hint": "",
+			"paths": [
+				"jimitan_24.png", "jimitan_24 - コピー.png"
+			]
 		}
 	],
 	"backs": {
@@ -133,7 +221,14 @@
 		         "上級/06.png", "上級/07.png", "上級/08.png", "上級/09.png", "上級/10.png",
 		         "上級/11.png", "上級/12.png", "上級/13.png", "上級/14.png", "上級/15.png",
 		         "上級/16.png", "上級/17.png", "上級/18.png", "上級/19.png", "上級/20.png",
-		         "上級/21.png", "上級/22.png", "上級/23.png", "上級/24.png", "上級/25.png"]
+		         "上級/21.png", "上級/22.png", "上級/23.png", "上級/24.png", "上級/25.png"],
+		"超上級": ["上級/01.png", "上級/02.png", "上級/03.png", "上級/04.png", "上級/05.png", "上級/06.png", "上級/07.png",
+		           "上級/08.png", "上級/09.png", "上級/10.png", "上級/11.png", "上級/12.png", "上級/13.png", "上級/14.png",
+		           "上級/15.png", "上級/16.png", "上級/17.png", "上級/18.png", "上級/19.png", "上級/20.png", "上級/21.png",
+                           "上級/22.png", "上級/23.png", "上級/24.png", "上級/25.png", "上級/26.png", "上級/27.png", "上級/28.png",
+                           "上級/29.png", "上級/30.png", "上級/31.png", "上級/32.png", "上級/33.png", "上級/34.png", "上級/35.png",
+                           "上級/36.png", "上級/37.png", "上級/38.png", "上級/39.png", "上級/40.png", "上級/41.png", "上級/42.png",
+                           "上級/43.png", "上級/44.png", "上級/45.png", "上級/46.png", "上級/47.png", "上級/48.png", "上級/49.png"]
 	},
 	"objs": ["jimitan_01.png", "jimitan_01.png"],
 	"center_fixed": true
